@@ -1,0 +1,22 @@
+resources:
+- name: labs-sydney-rails-docker
+  type: git
+  source:
+    uri: https://github.com/pivotal-sydney/labs-sydney-rails-docker.git
+    branch: master
+
+- name: labs-sydney-rails-docker-image
+  type: docker-image
+  source:
+    email: {{docker-email}}
+    username: {{docker-username}}
+    password: {{docker-password}}
+    repository: pivotalsydney/labs-sydney-rails
+
+jobs:
+- name: build-rootfs
+  plan:
+  - get: labs-sydney-rails-docker
+    trigger: true
+  - put: labs-sydney-rails-docker-image
+    params: {build: labs-sydney-rails-docker}
