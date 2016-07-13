@@ -1,7 +1,7 @@
 FROM ruby
 MAINTAINER labs-sydney
 
-RUN apt-get update && apt-get install -y nodej && apt-get install -y postgresql
+RUN apt-get update && apt-get install -y nodejs && apt-get install -y postgresql
 
 USER postgres
 RUN /etc/init.d/postgresql start && createuser --superuser root
