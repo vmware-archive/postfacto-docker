@@ -9,7 +9,6 @@ RUN echo "UPDATE pg_database SET datistemplate=FALSE WHERE datname='template1';"
     echo "UPDATE pg_database SET datistemplate=TRUE WHERE datname='template1';" >> utf8.sql
 
 RUN service postgresql start; \
-    export PGPASSWORD=postgres; \
     psql -U postgres -h localhost -a -f utf8.sql; \
     rm utf8.sql
 
