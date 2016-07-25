@@ -3,7 +3,7 @@ MAINTAINER labs-sydney
 
 RUN apt-get update -qq && apt-get install -y postgresql libpq-dev nodejs
 
-RUN service postgresql start
+RUN update-rc.d postgresql enable
 
 USER postgres
 
