@@ -3,14 +3,10 @@ MAINTAINER labs-sydney
 
 RUN apt-get update && apt-get install -y nodejs postgresql
 
-RUN echo "UPDATE pg_database SET datistemplate=FALSE WHERE datname='template1';" > utf8.sql; \
-    echo "DROP DATABASE template1;" >> utf8.sql; \
-    echo "CREATE DATABASE template1 WITH owner=postgres template=template0 encoding='UTF8';" >> utf8.sql; \
-    echo "UPDATE pg_database SET datistemplate=TRUE WHERE datname='template1';" >> utf8.sql
-
-RUN service postgresql start; \
-    psql -U postgres -h localhost -a -f utf8.sql; \
-    rm utf8.sql
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - ; \
+    echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list; \
+    apt-get update; \
+    apt-get install -y --force-yes google-chrome-stable xvfb;
 
 USER postgres
 
