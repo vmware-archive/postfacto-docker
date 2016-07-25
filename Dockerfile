@@ -8,7 +8,9 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
     apt-get update; \
     apt-get install -y --force-yes google-chrome-stable xvfb;
 
-USER postgres
+USER postgres 
+RUN /etc/init.d/postgresql start && createuser --superuser root
+USER root
 
 COPY check /opt/resource/check
 COPY in /opt/resource/in
