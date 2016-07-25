@@ -1,10 +1,7 @@
 FROM ruby
 MAINTAINER labs-sydney
 
-RUN apt-get update && apt-get install -y nodejs && apt-get install -y postgresql
-
-USER postgres
-RUN /etc/init.d/postgresql start && createuser --superuser root
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
 
 COPY check /opt/resource/check
 COPY in /opt/resource/in
