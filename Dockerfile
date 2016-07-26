@@ -1,7 +1,12 @@
 FROM ruby
 MAINTAINER labs-sydney
 
-RUN apt-get update && apt-get install -y nodejs postgresql
+RUN apt-get update && apt-get install -y postgresql
+
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash
+RUN apt-get update && apt-get install -y nodejs
+RUN npm install -g bower
+RUN npm install -g gulp
 
 USER postgres 
 RUN /etc/init.d/postgresql start && createuser --superuser root
