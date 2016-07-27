@@ -56,4 +56,6 @@ COPY check /opt/resource/check
 COPY in /opt/resource/in
 COPY out /opt/resource/out
 
+RUN apt-get update && apt-get install -y openjdk-7-jdk
+
 ENTRYPOINT ["/usr/bin/daemon-run"]
