@@ -5,7 +5,7 @@ resources:
     uri: https://github.com/pivotal-sydney/labs-sydney-rails-docker.git
     branch: master
 
-- name: labs-sydney-rails-docker-image
+- name: image-release
   type: docker-image
   source:
     email: {{docker-email}}
@@ -14,9 +14,9 @@ resources:
     repository: pivotalsydney/labs-sydney-rails
 
 jobs:
-- name: build-rootfs
+- name: build-image-release
   plan:
   - get: labs-sydney-rails-docker
     trigger: true
-  - put: labs-sydney-rails-docker-image
+  - put: image-release
     params: {build: labs-sydney-rails-docker}
