@@ -11,7 +11,7 @@ resources:
     email: {{docker-email}}
     username: {{docker-username}}
     password: {{docker-password}}
-    repository: pivotalsydney/labs-sydney-rails
+    repository: pivotalsydney/retro-acceptance
 
 jobs:
 - name: build-image-release
